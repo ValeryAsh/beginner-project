@@ -1,27 +1,14 @@
-let index = 0;
-let buttonCount = 0;
-const BODY = document.querySelector("body")
-
-
 function changeColors(){
-    const colors = ["red","blue","orange","blueviolet","green","gold","purple","yellow"];
-    BODY.style.backgroundColor = colors[index]
-    index++
-    if(index > colors.length-1){
-        index = 0
-    } 
-    changeColorsButton()
+    const HEX_COMPONENTS = ["0","1","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+    let hexCode = "";
+
+    for(let i = 0; i < 6; i++){
+        let randomNumber = Math.floor(Math.random() * HEX_COMPONENTS.length)
+        hexCode += HEX_COMPONENTS[randomNumber]
+    }
+
+    document.querySelector('span').textContent = hexCode
+    document.querySelector('body').style.background = '#' + hexCode
 }
 
-const button = document.querySelector('button')
-button.addEventListener('click', changeColors)
-
-function changeColorsButton(){
-    const buttonColors = ["darkslategrey","saddlebrown","black","white"];
-    button.style.color = buttonColors[buttonCount+1]
-    buttonCount++
-
-    if(buttonCount > buttonColors.length-2){
-        buttonCount = 0
-    } 
-}
+let button = document.querySelector('button').addEventListener("click", changeColors)
